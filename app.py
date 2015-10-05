@@ -4,7 +4,7 @@
 import os
 
 import bottle
-from bottle import default_app, route, response, get
+from bottle import route, response, get, run
 import requests
 
 bottle.debug(True)
@@ -13,4 +13,4 @@ bottle.debug(True)
 def index():
     res = requests.get("http://www.omdbapi.com/?t=game+of+thrones&y=&plot=short&r=json")
     return res.json()
-bottle.run(host='localhost', port=9090)
+run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
